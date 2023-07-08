@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: fun-auth-depl
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: fun-auth
+  template:
+    metadata:
+      labels:
+        app: fun-auth
+    spec:
+      containers:
+        - name: fun-auth
+          image: docker.io/chillabit2332/fun-auth
+          env: 
+            - name: MONGO_URI
+              value: 'mongodb://fun-auth-mongo-srv:27017/fun-auth'
+            - name: JWT_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: jwt-secret
+                  key: JWT_KEY
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: fun-auth-srv
+spec:
+  selector:
+    app: fun-auth
+  ports:
+    - name: fun-auth
+      protocol: TCP
+      port: 3000
+      targetPort: 3000

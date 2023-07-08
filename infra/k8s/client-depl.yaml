@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: fun-client-depl
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: fun-client
+  template:
+    metadata:
+      labels:
+        app: fun-client
+    spec:
+      containers:
+        - name: fun-client
+          image: docker.io/chillabit2332/fun-client
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: fun-client-srv
+spec:
+  selector:
+    app: fun-client
+  ports:
+    - name: fun-client
+      protocol: TCP
+      port: 3000
+      targetPort: 3000
