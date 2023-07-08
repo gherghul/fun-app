@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: fun-client
-          image: docker.io/chillabit2332/fun-client
+          image: {DockerId}/fun-client
 ---
 apiVersion: v1
 kind: Service

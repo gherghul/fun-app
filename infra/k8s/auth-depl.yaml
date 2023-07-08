@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: fun-auth
-          image: docker.io/chillabit2332/fun-auth
+          image: {DockerId}/fun-auth
           env: 
             - name: MONGO_URI
               value: 'mongodb://fun-auth-mongo-srv:27017/fun-auth'

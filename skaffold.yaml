@@ -8,7 +8,7 @@ build:
   local:
     push: false
   artifacts:
-    - image: docker.io/chillabit2332/fun-auth
+    - image: {DockerId}/fun-auth
       context: auth
       docker:
         dockerfile: Dockerfile
@@ -16,7 +16,7 @@ build:
         manual:
           - src: "src/**/*.ts"
             dest: .
-    - image: docker.io/chillabit2332/fun-client
+    - image: {DockerId}/fun-client
       context: client
       docker:
         dockerfile: Dockerfile
