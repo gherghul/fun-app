@@ -1,28 +1,28 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: ninelush-auth-mongo-depl
+  name: ninelush-furniture-mongo-depl
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: ninelush-auth-mongo
+      app: ninelush-furniture-mongo
   template:
     metadata:
       labels:
-        app: ninelush-auth-mongo
+        app: ninelush-furniture-mongo
     spec:
       containers:
-        - name: ninelush-auth-mongo
+        - name: ninelush-furniture-mongo
           image: mongo
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: ninelush-auth-mongo-srv
+  name: ninelush-furniture-mongo-srv
 spec:
   selector:
-    app: ninelush-auth-mongo
+    app: ninelush-furniture-mongo
   ports:
     - name: db
       protocol: TCP

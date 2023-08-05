@@ -1,23 +1,23 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: fun-auth-depl
+  name: ninelush-auth-depl
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: fun-auth
+      app: ninelush-auth
   template:
     metadata:
       labels:
-        app: fun-auth
+        app: ninelush-auth
     spec:
       containers:
-        - name: fun-auth
-          image: {DockerId}/fun-auth
+        - name: ninelush-auth
+          image: docker.io/chillabit2332/ninelush-auth
           env: 
             - name: MONGO_URI
-              value: 'mongodb://fun-auth-mongo-srv:27017/fun-auth'
+              value: 'mongodb://ninelush-auth-mongo-srv:27017/ninelush-auth'
             - name: JWT_KEY
               valueFrom:
                 secretKeyRef:
@@ -27,12 +27,12 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: fun-auth-srv
+  name: ninelush-auth-srv
 spec:
   selector:
-    app: fun-auth
+    app: ninelush-auth
   ports:
-    - name: fun-auth
+    - name: ninelush-auth
       protocol: TCP
       port: 3000
       targetPort: 3000

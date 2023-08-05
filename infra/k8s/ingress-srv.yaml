@@ -7,20 +7,27 @@ metadata:
     nginx.ingress.kubernetes.io/use-regex: "true"
 spec:
   rules:
-    - host: fun.dev
+    - host: ninelush.dev
       http:
         paths:
           - path: /api/users/?(.*)
             pathType: Prefix
             backend:
               service:
-                name: fun-auth-srv
+                name: ninelush-auth-srv
+                port:
+                  number: 3000
+          - path: /api/furniture/?(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: ninelush-furniture-srv
                 port:
                   number: 3000
           - path: /?(.*)
             pathType: Prefix
             backend:
               service:
-                name: fun-client-srv
+                name: ninelush-client-srv
                 port:
                   number: 3000

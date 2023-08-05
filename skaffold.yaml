@@ -8,7 +8,7 @@ build:
   local:
     push: false
   artifacts:
-    - image: {DockerId}/fun-auth
+    - image: docker.io/chillabit2332/ninelush-auth
       context: auth
       docker:
         dockerfile: Dockerfile
@@ -16,7 +16,15 @@ build:
         manual:
           - src: "src/**/*.ts"
             dest: .
-    - image: {DockerId}/fun-client
+    - image: docker.io/chillabit2332/ninelush-furniture
+      context: furniture
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: "src/**/*.ts"
+            dest: .
+    - image: docker.io/chillabit2332/ninelush-client
       context: client
       docker:
         dockerfile: Dockerfile
